@@ -3,6 +3,7 @@
 
 <head>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
   <meta charset="utf-8">
   <title>Gif Tastic</title>
   <style type="text/css">
@@ -12,52 +13,79 @@
     input {
       margin: 10px;
     }
+    label{
+  text-align: center;
+  background-color: lime;
+  opacity: 0.8;
+
+    }
     img {
 /*    vertical-align: top;
     float:left;
     text-align: center;
 */  width: 100%;
     height: auto;
+    border: dashed Fuchsia 10px;
+
 }
-/*img {
-    width: 100px;
-    height: 100px;
-    background-color: grey;
-}*/
-/*.rating {
-    display: block;
-    clear: both;
-}*/
+h1{
+  text-align: center;
+  background-color: yellow;
+  opacity: 0.8;
+  font-size: 500%;
+
+
+}
+body{
+  background-image: url("epic.jpg");
+  background-size: 100%;
+  font-family: 'Barrio', cursive;
+
+
+  }
+
+.rating {
+
+    text-align: center;
+    background-color: lightgreen;
+    font-size: 200%;
+}
+
+.btn{
+  color: white;
+}
+
+.btn:hover{
+  color: lime;
+}
+
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <h1>GifTastic</h1>
+    <h1>Gif Tastic Kitty Time Best Time # 1</h1>
 
-    <!-- Rendered buttons will get dumped here  -->
+
     <div id="buttons-view"></div>
 
     <form id="cat-form">
-      <label for="cat-input">Add an Internet Cat</label>
-      <input type="text" id="cat-input"><br>
 
-      <!-- Button triggers new movie to be added -->
-      <input id="add-cat" type="submit" value="Add an Internet Cat">
+      <input  placeholder="Type New Kitty Here!" type="text" id="cat-input"><br>
+
+
+      <input class="btn btn-warning btn-lg" id="add-cat" type="submit" value="Add an Internet Cat">
     </form>
 
-    <!-- Movies will get dumped Dere -->
     <div id="cat-view" class="row"></div>
 
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript">
-      // Initial array of movies
       var kitties = ["Nyan Cat", "Keyboard Cat", "lil Bub", "Grumpy Cat", "Maru", "Pusheen", "Didga", "catzilla", "Long Cat", "Henri cat", "Colonel Meow" ];
       var moving = false;
       var calling ;
 
-      // displayMovieInfo function re-renders the HTML to display the appropriate content
       function displayCatInfo() {
 
         var kitty = $(this).attr("data-name");
@@ -65,7 +93,6 @@
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + kitty + "&api_key=dc6zaTOxFJmzC";
 
 
-        // Creates AJAX call for the specific movie button being clicked
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -115,71 +142,33 @@
        $('#cat-view').append("<div id='cat10' class='col-xs-4'>");
        $('#cat10').append('<img class="catPic" value = '+9+' src=' + response.data[9].images.original_still.url +'>' );
        $('#cat10').append('<span class="rating"> Rated: ' + response.data[9].rating +'</span>' );
-
-
-          // Creates a div to hold the movie
-          // Retrieves the Rating Data
-          // Creates an element to have the rating displayed
-          // Displays the rating
-          // Retrieves the release year
-          // Creates an element to hold the release year
-          // Displays the release year
-          // Retrieves the plot
-          // Creates an element to hold the plot
-          // Appends the plot
-          // Creates an element to hold the image
-          // Appends the image
-          // Puts the entire Movie above the previous movies.
         });
 
       }
 
-      // Function for displaying movie data
             function renderButtons() {
         $("#buttons-view").empty();
-        // Delete the content inside the movies-view div prior to adding new movies
-        // (this is necessary otherwise you will have repeat buttons)
 
-        // Loop through the array of movies, then generate buttons for each movie in the array
         for (i = 0; i < kitties.length; i++) { 
           console.log(kitties[i]);
-        $('#buttons-view').append('<button class="cat" data-name="' + kitties[i] + '">' + kitties[i] + '</button>');
+        $('#buttons-view').append('<button class="cat btn btn-success" data-name="' + kitties[i] + '">' + kitties[i] + '</button>');
 
 }
 
       }
 
-      // This function handles events where the add movie button is clicked
       $("#add-cat").on("click", function(event) {
-        // event.preventDefault() prevents submit button from trying to send a form.
-        // Using a submit button instead of a regular button allows the user to hit
-        // "Enter" instead of clicking the button if desired
         event.preventDefault();
 
-        // Write code to grab the text the user types into the input field
-        // Write code to add the new movie into the movies array
         var newKitty = $('#cat-input').val().trim();
         console.log(newKitty);
         kitties.push(newKitty);
 
-        // The renderButtons function is called, rendering the list of movie buttons
         renderButtons();
       });
 
-      // function playKittyGif(){
-
-      //   if (moving == false){
-      //     $(this.attr("src", calling.data[0].images.original.url));
-      //     moving = true;
-      //   }
-      //   else {
-      //     $(this.attr("src", calling.data[0].images.original_still.url));
-      //     moving = false;
-      //   }
-      // }
 
 
-      // Adding click event listeners to all elements with a class of "movie"
       $(document).on("click", ".cat", displayCatInfo);
 
       $(document).on("click", ".catPic", function playKittyGif(){
@@ -194,11 +183,20 @@
           moving = false;
         }
       }
-      // console.log($(this).attr("value"));
+
       });
 
-      // Calling the renderButtons function to display the intial buttons
       renderButtons();
+
+      $('.btn').mouseenter(function () {
+    $(this).css({border: '0 solid #f37736'}).animate({
+        borderWidth: 2
+    }, 500);
+}).mouseleave(function () {
+     $(this).animate({
+        borderWidth: 0
+    }, 500);
+});
     </script>
   </div>
 </body>
