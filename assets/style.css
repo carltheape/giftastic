@@ -1,0 +1,51 @@
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+    label{
+  text-align: center;
+  background-color: lime;
+  opacity: 0.8;
+
+    }
+    img {
+/*    vertical-align: top;
+    float:left;
+    text-align: center;
+*/  width: 100%;
+    height: auto;
+    border: dashed Fuchsia 10px;
+
+}
+h1{
+  text-align: center;
+  background-color: yellow;
+  opacity: 0.8;
+  font-size: 500%;
+
+
+}
+body{
+  background-image: url("../epic.jpg");
+  background-size: 100%;
+  font-family: 'Barrio', cursive;
+
+
+  }
+
+.rating {
+
+    text-align: center;
+    background-color: lightgreen;
+    font-size: 200%;
+}
+
+.btn{
+  color: white;
+}
+
+.btn:hover{
+  color: lime;
+}
