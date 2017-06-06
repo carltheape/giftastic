@@ -1,9 +1,9 @@
 $(document).ready(function(){
-
+//initial variables
 var kitties = ["Nyan Cat", "Keyboard Cat", "lil Bub", "Grumpy Cat", "Maru", "Pusheen", "Didga", "catzilla", "Long Cat", "Henri cat", "Colonel Meow" ];
       var moving = false;
       var calling ;
-
+//gets the query based on the button clicked
       function displayCatInfo() {
 
         var kitty = $(this).attr("data-name");
@@ -63,7 +63,7 @@ var kitties = ["Nyan Cat", "Keyboard Cat", "lil Bub", "Grumpy Cat", "Maru", "Pus
         });
 
       }
-
+//erases old buttons and displays new
             function renderButtons() {
         $("#buttons-view").empty();
 
@@ -78,17 +78,20 @@ var kitties = ["Nyan Cat", "Keyboard Cat", "lil Bub", "Grumpy Cat", "Maru", "Pus
       $("#add-cat").on("click", function(event) {
         event.preventDefault();
 
-        var newKitty = $('#cat-input').val().trim();
+        if ($('#cat-input').val() !== 0){
+          var newKitty = $('#cat-input').val().trim();
+        
         console.log(newKitty);
         kitties.push(newKitty);
+        ;
 
         renderButtons();
-      });
+      }});
 
 
-
+//the click a button listen
       $(document).on("click", ".cat", displayCatInfo);
-
+//the click an image and move/stop it
       $(document).on("click", ".catPic", function playKittyGif(){
         {
 
@@ -103,9 +106,9 @@ var kitties = ["Nyan Cat", "Keyboard Cat", "lil Bub", "Grumpy Cat", "Maru", "Pus
       }
 
       });
-
+//initial buttons
       renderButtons();
-
+//animations i was playing with
       $('.btn').mouseenter(function () {
     $(this).css({border: '0 solid #f37736'}).animate({
         borderWidth: 2
